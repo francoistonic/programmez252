@@ -1,0 +1,308 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fswiss\fcharset0 Helvetica;\f2\froman\fcharset0 Times-Roman;
+\f3\froman\fcharset0 Times-Bold;\f4\fswiss\fcharset0 Helvetica-Bold;}
+{\colortbl;\red255\green255\blue255;\red0\green128\blue0;\red175\green0\blue219;\red0\green16\blue128;
+\red121\green94\blue38;\red163\green21\blue21;\red0\green0\blue255;\red106\green153\blue85;\red197\green134\blue192;
+\red212\green212\blue212;\red156\green220\blue254;\red181\green206\blue168;\red206\green145\blue120;\red220\green220\blue170;
+\red86\green156\blue214;\red9\green134\blue88;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c50196\c0;\csgenericrgb\c68627\c0\c85882;\csgenericrgb\c0\c6275\c50196;
+\csgenericrgb\c47451\c36863\c14902;\csgenericrgb\c63922\c8235\c8235;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c41569\c60000\c33333;\csgenericrgb\c77255\c52549\c75294;
+\csgenericrgb\c83137\c83137\c83137;\csgenericrgb\c61176\c86275\c99608;\csgenericrgb\c70980\c80784\c65882;\csgenericrgb\c80784\c56863\c47059;\csgenericrgb\c86275\c86275\c66667;
+\csgenericrgb\c33725\c61176\c83922;\csgenericrgb\c3529\c52549\c34510;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab708
+\pard\pardeftab708\ri-618\partightenfactor0
+
+\f0\fs20 \cf2 // Si un fournisseur ethereum est pr\'e9sent\'a0:
+\f1\fs24 \cf0 \
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f2\fs20 \cf3 if\cf0  (\cf4 window
+\f1 \cf0 .
+\f2 \cf4 ethereum\cf0 ) \{\
+\pard\pardeftab708\li1418\ri-618\sl240\partightenfactor0
+\cf4 App
+\f1 \cf0 .
+\f2 \cf4 web3Provider\cf0  = \cf4 window
+\f1 \cf0 .
+\f2 \cf4 ethereum\cf0 ;\
+\pard\pardeftab708\li1418\ri-618\sl240\partightenfactor0
+\cf3 try\cf0  \{\
+\pard\pardeftab708\li1418\ri-618\sl240\partightenfactor0
+\cf2 // Request account access\
+\pard\pardeftab708\li1418\ri-618\sl240\partightenfactor0
+\cf3 await\cf0  \cf4 window
+\f1 \cf0 .
+\f2 \cf4 ethereum
+\f1 \cf0 .
+\f2 \cf5 request\cf0 (\{ \cf4 method:\cf0  \cf6 "eth_requestAccounts"\cf0  \});;\
+\} \cf3 catch\cf0  (\cf4 error\cf0 ) \{\
+\pard\pardeftab708\li1418\ri-618\sl240\partightenfactor0
+\cf2 // User denied account access...\
+\pard\pardeftab708\li1418\ri-618\sl240\partightenfactor0
+\cf4 console
+\f1 \cf0 .
+\f2 \cf5 error\cf0 (\cf6 "User denied account access"\cf0 )\
+\pard\pardeftab708\li1418\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 \}\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf0 \}\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f0 \cf2 // Autre cas de figure\'a0:
+\f1\fs24 \cf0 \
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f2\fs20 \cf3 else\cf0  \cf3 if\cf0  (\cf4 window
+\f1 \cf0 .
+\f2 \cf4 web3\cf0 ) \{\
+\pard\pardeftab708\li1418\ri-618\sl240\partightenfactor0
+\cf4 App
+\f1 \cf0 .
+\f2 \cf4 web3Provider\cf0  = \cf4 window
+\f1 \cf0 .
+\f2 \cf4 web3
+\f1 \cf0 .
+\f2 \cf4 currentProvider\cf0 ;\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 \}\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f2 \cf2 // Sinon, acc\'e8s direct par le port TCP de Ganache\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf3 else\cf0  \{\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf4 App
+\f1 \cf0 .
+\f2 \cf4 web3Provider\cf0  = \cf7 new\cf0  \cf4 Web3
+\f1 \cf0 .
+\f2 \cf4 providers
+\f1 \cf0 .
+\f2 \cf5 HttpProvider\cf0 (\cf6 'http://localhost:7545'\cf0 );\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 \}\
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+\cf0 \
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf0 \
+\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f2 \cf4 $
+\f1 \cf0 .
+\f2 \cf5 getJSON\cf0 (\cf6 'Location.json'\cf0 , \cf7 function\cf0 (\cf4 data\cf0 ) \{
+\f1\fs24 \
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f2\fs20 \cf2 // Get the necessary contract artifact file and instantiate it with @truffle/contract\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf7 var\cf0  loca\cf4 tionArtifact\cf0  = \cf4 data\cf0 ;\
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+
+\f1 \cf4 	
+\f2 App
+\f1 \cf0 .
+\f2 \cf4 contracts
+\f1 \cf0 .
+\f2 \cf4 Location\cf0  = \cf5 TruffleContract\cf0 (l\cf4 ocationArtifact\cf0 );\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 \
+\pard\pardeftab708\ri-618\sl276\slmult1\sa140\partightenfactor0
+\cf0 \
+\pard\pardeftab708\ri-618\sl276\slmult1\sa140\partightenfactor0
+
+\f2 \cf7 var\cf0  \cf4 locationInstance\cf0 ;
+\f1\fs24 \
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+
+\f2\fs20 \cf4 App
+\f1 \cf0 .
+\f2 \cf4 contracts\cf0 .Loca\cf4 tion
+\f1 \cf0 .
+\f2 \cf5 deployed\cf0 ()\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 .
+\f2 \cf5 then\cf0 (\cf7 function\cf0 (\cf4 instance\cf0 ) \{
+\f1 \
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f3\b \cf4 locationInstance
+\f2\b0 \cf0  = \cf4 instance\cf0 ;
+\f1 \
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f2 \cf2 // Appel \'e0 la fonction getAppartements. Le r\'e9sultat est envoy\'e9 sur la fonction suivante\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf3 return\cf0  \cf4 adoptionInstance
+\f1 \cf0 .
+\f3\b \cf4 getAppartements
+\f1\b0 \cf0 .
+\f2 \cf5 call\cf0 ();\
+\})\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 \
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\fs24 \cf0 \
+\pard\pardeftab708\ri-618\sl276\slmult1\sa140\partightenfactor0
+
+\fs20 \cf0 \
+\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf0 .
+\f2 \cf5 then\cf0 (\cf7 function\cf0 (\cf4 appartements\cf0 ) \{\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf8 / Pour chaque appartement, on indique s'il est lou\'e9 ou non:
+\f1 \cf2 \
+\pard\pardeftab708\li709\ri-618\sl285\partightenfactor0
+
+\f2 \cf9 for\cf10  (\cf11 i\cf10  = 
+\f1 \cf12 0
+\f2 \cf10 ; \cf11 i\cf10  < \cf11 appartements
+\f1 \cf10 .
+\f2 \cf11 length\cf10 ; \cf11 i\cf10 ++) \{\
+\cf9 if\cf10  (\cf11 appartements\cf10 [\cf11 i\cf10 ] !== \cf13 '0x0000000000000000000000000000000000000000'\cf10 ) \{\
+\pard\pardeftab708\li709\ri-618\sl285\partightenfactor0
+\cf14 $\cf10 (\cf13 '.panel-appart'\cf10 ).\cf14 eq\cf10 (\cf11 i\cf10 ).\cf14 find\cf10 (\cf13 'button'\cf10 ).\cf14 text\cf10 (\cf13 'Indisponible'\cf10 )\
+	.\cf14 attr\cf10 (\cf13 'disabled'\cf10 , \cf15 true\cf10 )\
+	.\cf14 addClass\cf10 (\cf13 "btn-warning"\cf10 );\
+\}\
+\}\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 \}
+\f2 )\
+.\cf5 catch\cf0 (\cf7 function\cf0 (\cf4 err\cf0 ) \{\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf4 console
+\f1 \cf0 .
+\f2 \cf5 log\cf0 (\cf4 err
+\f1 \cf0 .
+\f2 \cf4 message\cf0 );\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 \}
+\f2 );\
+\pard\pardeftab708\ri-618\sl276\slmult1\sa140\partightenfactor0
+
+\f1 \cf0 \
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+\cf5 \
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+
+\f2 \cf5 handleLocation\cf0  \cf7 function\cf0 (\cf4 event\cf0 ) \{
+\f1\fs24 \
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+
+\fs20 \cf4 \
+
+\f2 event
+\f1 \cf0 .
+\f2 \cf5 preventDefault\cf0 ();
+\f1 \
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+
+\f2 \cf7 var\cf0  \cf4 apartId\cf0  = \cf5 parseInt\cf0 (\cf5 $\cf0 (\cf4 event
+\f1 \cf0 .
+\f2 \cf4 target\cf0 ).\cf5 data\cf0 (\cf6 'id'\cf0 ));
+\f1 \
+\
+
+\f2 \cf7 var\cf0  \cf4 locationInstance\cf0 ;\
+// \cf4 web3
+\f1 \cf0 .
+\f2 \cf4 eth
+\f1 \cf0 .
+\f2 \cf5 getAccounts sert \'e0 r\'e9cup\'e9rer les comptes de l\'92utilisateur
+\f1 \cf0 \
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+\cf5 \
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+
+\f2 \cf4 web3
+\f1 \cf0 .
+\f2 \cf4 eth
+\f1 \cf0 .
+\f2 \cf5 getAccounts\cf0 (\cf7 function\cf0 (\cf4 error\cf0 , \cf4 accounts\cf0 ) \{\
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+\cf3 if\cf0  (\cf4 error\cf0 ) \{\
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+\cf4 console
+\f1 \cf0 .
+\f2 \cf5 log\cf0 (\cf4 error\cf0 );\
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 \}\
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+
+\f2 \cf2 // On prend le premier compte:\
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+\cf7 var\cf0  \cf4 account\cf0  = \cf4 accounts\cf0 [
+\f1 \cf16 0
+\f2 \cf0 ];\
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+\cf4 App
+\f1 \cf0 .
+\f2 \cf4 contracts
+\f1 \cf0 .
+\f2 \cf4 Location
+\f1 \cf0 .
+\f2 \cf5 deployed\cf0 ()
+\f1\fs24 \
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\fs20 \cf0 .
+\f2 \cf5 then\cf0 (\cf7 function\cf0 (\cf4 instance\cf0 ) \{\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf4 locationInstance\cf0  = \cf4 instance\cf0 ;
+\f1\fs24 \
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f2\fs20 \cf2 // Appel \'e0 la fonction loue, en transmettant le compte associ\'e9:
+\f1\fs24 \cf0 \
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f2\fs20 \cf3 return\cf0  \cf4 adoptionInstance
+\f1 \cf0 .
+\f3\b \cf5 loue\cf0 (\cf4 apartId\cf0 , \{\cf4 from:\cf0  \cf4 account
+\f4 \cf0 \}
+\f3 );
+\f1\b0 \
+\}
+\f2 )\
+.\cf5 then\cf0 (\cf7 function\cf0 (\cf4 result\cf0 ) \{\
+\cf3 return\cf0  \cf4 App
+\f1 \cf0 .
+\f2 \cf5 markLoue\cf0 ();\
+\})\
+.\cf5 catch\cf0 (\cf7 function\cf0 (\cf4 err\cf0 ) \{\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+\cf4 console
+\f1 \cf0 .
+\f2 \cf5 log\cf0 (\cf4 err
+\f1 \cf0 .
+\f2 \cf4 message\cf0 );\
+\pard\pardeftab708\li709\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 \}
+\f2 );\
+\pard\pardeftab708\ri-618\sl240\partightenfactor0
+
+\f1 \cf0 \}
+\f2 );\
+\}\
+\};\
+\pard\pardeftab708\ri-618\sl276\slmult1\sa140\partightenfactor0
+
+\f1 \cf0 \
+\
+\pard\pardeftab708\ri-618\sl276\slmult1\sa140\partightenfactor0
+
+\fs24 \cf0 \
+}
